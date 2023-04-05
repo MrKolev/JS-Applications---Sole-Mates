@@ -5,7 +5,7 @@ const endpoint = {
     "login": `/users/login`,
     "register": `/users/register`,
     "logout": `/users/logout`,
-    "getAllalbums": `/data/albums?sortBy=_createdOn%20desc`,
+    "getAllalbums": `/data/shoes?sortBy=_createdOn%20desc`,
     "newAlbums": `/data/albums`,
     "getAlbumId": (id) => `/data/albums/${id}`,
     "newLikes": `/data/likes`,
