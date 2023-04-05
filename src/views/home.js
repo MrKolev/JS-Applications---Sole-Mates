@@ -10,10 +10,10 @@ export async function homePageView(ctx){
 function homePageTemp(){
 return html`
 <section id="home">
-        <img src="./images/landing.png" alt="home" />
-
-        <h2 id="landing-text"><span>Add your favourite albums</span> <strong>||</strong> <span>Discover new ones right
-            here!</span></h2>
-      </section>
+  <h1>Welcome to Sole Mates</h1>
+  <img src="./images/home.jpg" alt="home" />
+  <h2>Browse through the shoe collectibles of our users</h2>
+  <h3>Add or manage your items</h3>
+</section>
 `
 }
