@@ -30,6 +30,7 @@ function detailsPageTemp(data, isCreator, ctx) {
     ${isCreator ? html`
     <div id="action-buttons">
      <a href="/edit/${data._id}" id="edit-btn">Edit</a>
+     
      <a @click=${() => {
         if (confirm("Are you sure you want to delete it?")) {
           deleteOne(data._id);

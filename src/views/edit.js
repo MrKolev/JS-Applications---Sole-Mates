@@ -2,7 +2,7 @@ import { html } from "../../node_modules/lit-html/lit-html.js"
 import { edit, getInfo } from "../api/data.js";
 
 
-export function editPageView(ctx) {
+export async function editPageView(ctx) {
   getInfo(ctx.params.id)
     .then((data) => {
       ctx.render(editPageTemp(ctx, data))
@@ -20,43 +20,37 @@ function editPageTemp(ctx, data) {
         name="brand"
         id="shoe-brand"
         placeholder="Brand"
-        value="${data.brand}
-      />
+        value="${data.brand}"/>
       <input
         type="text"
         name="model"
         id="shoe-model"
         placeholder="Model"
-        value="${data.model}
-      />
+        value="${data.model}"/>
       <input
         type="text"
         name="imageUrl"
         id="shoe-img"
         placeholder="Image url"
-        value="${data.imageUrl}
-      />
+        value="${data.imageUrl}"/>
       <input
         type="text"
         name="release"
         id="shoe-release"
         placeholder="Release date"
-        value="${data.release}
-      />
+        value="${data.release}"/>
       <input
         type="text"
         name="designer"
         id="shoe-designer"
         placeholder="Designer"
-        value="${data.designer}
-      />
+        value="${data.designer}"/>
       <input
         type="text"
         name="value"
         id="shoe-value"
         placeholder="Value"
-        value="${data.value}
-      />
+        value="${data.value}"/>
 
       <button type="submit">post</button>
     </form>
