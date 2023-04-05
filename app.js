@@ -9,6 +9,7 @@ import { editPageView } from "./src/views/edit.js";
 import { homePageView } from "./src/views/home.js";
 import { loginPageView } from "./src/views/login.js";
 import { registerPageView } from "./src/views/register.js";
+import { seaechPageView } from "./src/views/search.js";
 
 const context = document.querySelector("main");
 const navBar = document.querySelector("header");
@@ -21,6 +22,7 @@ page("/login", loginPageView);
 page("/create", createPageView);
 page("/details/:id", detailsPageView);
 page("/edit/:id", editPageView);
+page("/search", seaechPageView);
 page("/logout", () => {
     logout();
     delUserData();
@@ -37,8 +39,8 @@ export function updateNavBar() {
 <a id="logo" href="/"><img id="logo-img" src="./images/logo.png" alt=""/></a>
 <nav>
   <div>
-    <a href="#">Dashboard</a>
-    <a href="#">Search</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/search">Search</a>
   </div>
 ${user ? html`
 <div class="user">

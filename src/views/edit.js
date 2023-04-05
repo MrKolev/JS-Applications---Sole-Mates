@@ -1,55 +1,84 @@
 import { html } from "../../node_modules/lit-html/lit-html.js"
-import { editAlbum, getAlbumInfo } from "../api/data.js";
+import { edit, getInfo } from "../api/data.js";
 
 
-export async function editPageView(ctx) {
-  const data = await getAlbumInfo(ctx.params.id);
-  ctx.render(editPageTemp(ctx, data))
+export function editPageView(ctx) {
+  getInfo(ctx.params.id)
+    .then((data) => {
+      ctx.render(editPageTemp(ctx, data))
+    })
 }
 
 function editPageTemp(ctx, data) {
   return html` 
-<section id="edit">
-        <div class="form">
-          <h2>Edit Album</h2>
-          <form @submit=${(e) => onSubmit(e, ctx)} class="edit-form">
-            <input type="text" name="singer" id="album-singer" placeholder="Singer/Band" value="${data.singer}" />
-            <input type="text" name="album" id="album-album" placeholder="Album" value="${data.album}" />
-            <input type="text" name="imageUrl" id="album-img" placeholder="Image url" value="${data.imageUrl}" />
-            <input type="text" name="release" id="album-release" placeholder="Release date" value="${data.release}" />
-            <input type="text" name="label" id="album-label" placeholder="Label" value="${data.label}" />
-            <input type="text" name="sales" id="album-sales" placeholder="Sales" value ="${data.sales}" />
+  <section id="edit">
+  <div class="form">
+    <h2>Edit item</h2>
+    <form @submit=${(e) => onSubmit(e, ctx)} class="edit-form">
+      <input
+        type="text"
+        name="brand"
+        id="shoe-brand"
+        placeholder="Brand"
+        value="${data.brand}
+      />
+      <input
+        type="text"
+        name="model"
+        id="shoe-model"
+        placeholder="Model"
+        value="${data.model}
+      />
+      <input
+        type="text"
+        name="imageUrl"
+        id="shoe-img"
+        placeholder="Image url"
+        value="${data.imageUrl}
+      />
+      <input
+        type="text"
+        name="release"
+        id="shoe-release"
+        placeholder="Release date"
+        value="${data.release}
+      />
+      <input
+        type="text"
+        name="designer"
+        id="shoe-designer"
+        placeholder="Designer"
+        value="${data.designer}
+      />
+      <input
+        type="text"
+        name="value"
+        id="shoe-value"
+        placeholder="Value"
+        value="${data.value}
+      />
 
-            <button type="submit">post</button>
-          </form>
-        </div>
-      </section>
+      <button type="submit">post</button>
+    </form>
+  </div>
+</section>
 `
 }
 
 async function onSubmit(e, ctx) {
   e.preventDefault();
-  const {
-    singer,
-    album,
-    imageUrl,
-    release,
-    label,
-    sales
-  } = Object.fromEntries(new FormData(e.target));
+
+  const { brand, model, imageUrl,
+    release, designer, value } = Object.fromEntries(new FormData(e.target));
 
   try {
-    if (!singer || !album || !imageUrl ||
-      !release || !label || !sales) {
+    if (!brand || !model || !imageUrl ||
+      !release || !designer || !value) {
       throw new Error("Fill in all the fields!")
     }
-    await editAlbum(ctx.params.id, {
-      singer,
-      album,
-      imageUrl,
-      release,
-      label,
-      sales
+    await edit(ctx.params.id, {
+      brand, model, imageUrl,
+      release, designer, value
     })
     ctx.page.redirect("/dashboard")
 

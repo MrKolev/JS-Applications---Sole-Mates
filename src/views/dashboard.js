@@ -1,13 +1,12 @@
 import { html } from "../../node_modules/lit-html/lit-html.js"
-import { getAllalbums } from "../api/data.js"
+import { getAll } from "../api/data.js"
 
 
 export async function dashboardPageView(ctx) {
-
-  ctx.render(dashboardPageTemp(await getAllalbums(),ctx.getUserData()));
+  ctx.render(dashboardPageTemp(await getAll(),ctx.getUserData()));
 }
 
-function dashboardPageTemp(data, user) {
+function dashboardPageTemp(data) {
   return html`
   <section id="dashboard">
   <h2>Collectibles</h2>
