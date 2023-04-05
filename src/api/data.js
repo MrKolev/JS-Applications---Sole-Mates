@@ -6,7 +6,7 @@ const endpoint = {
     "register": `/users/register`,
     "logout": `/users/logout`,
     "getAllalbums": `/data/shoes?sortBy=_createdOn%20desc`,
-    "newAlbums": `/data/albums`,
+    "newAlbums": `/data/shoes`,
     "getAlbumId": (id) => `/data/albums/${id}`,
     "newLikes": `/data/likes`,
     "getLikesForAlbum": (albumId) => `/data/likes?where=albumId%3D%22${albumId}%22&distinct=_ownerId&count`,

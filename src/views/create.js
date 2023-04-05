@@ -8,47 +8,77 @@ export async function createPageView(ctx) {
 
 function createPageTemp(ctx) {
   return html` 
-<section id="create">
-        <div class="form">
-          <h2>Add Album</h2>
-          <form @submit=${(e) => onSubmit(e, ctx)} class="create-form">
-            <input type="text" name="singer" id="album-singer" placeholder="Singer/Band" />
-            <input type="text" name="album" id="album-album" placeholder="Album" />
-            <input type="text" name="imageUrl" id="album-img" placeholder="Image url" />
-            <input type="text" name="release" id="album-release" placeholder="Release date" />
-            <input type="text" name="label" id="album-label" placeholder="Label" />
-            <input type="text" name="sales" id="album-sales" placeholder="Sales" />
+  <section id="create">
+  <div class="form">
+    <h2>Add item</h2>
+    <form @submit=${(e) => onSubmit(e, ctx)} class="create-form">
+      <input
+        type="text"
+        name="brand"
+        id="shoe-brand"
+        placeholder="Brand"
+      />
+      <input
+        type="text"
+        name="model"
+        id="shoe-model"
+        placeholder="Model"
+      />
+      <input
+        type="text"
+        name="imageUrl"
+        id="shoe-img"
+        placeholder="Image url"
+      />
+      <input
+        type="text"
+        name="release"
+        id="shoe-release"
+        placeholder="Release date"
+      />
+      <input
+        type="text"
+        name="designer"
+        id="shoe-designer"
+        placeholder="Designer"
+      />
+      <input
+        type="text"
+        name="value"
+        id="shoe-value"
+        placeholder="Value"
+      />
 
-            <button type="submit">post</button>
-          </form>
-        </div>
-      </section>
+      <button type="submit">post</button>
+    </form>
+  </div>
+</section>
 `
 }
 
 async function onSubmit(e, ctx) {
   e.preventDefault();
   const {
-    singer,
-    album,
+    brand,
+    model,
     imageUrl,
     release,
-    label,
-    sales
+    designer,
+    value
   } = Object.fromEntries(new FormData(e.target));
 
   try {
-    if (!singer || !album || !imageUrl ||
-      !release || !label || !sales) {
+    if (!brand || !model || !imageUrl
+      || !release || !designer || !value) {
       throw new Error("Fill in all the fields!")
     }
     await createAlbum({
-      singer,
-      album,
+      brand,
+      model,
       imageUrl,
       release,
-      label,
-      sales
+      designer,
+      value
     })
     ctx.page.redirect("/dashboard")
 
